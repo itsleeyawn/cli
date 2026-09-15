@@ -1,9 +1,9 @@
 # Project Proposal — HTTPie CLI
 
 **Course:** SWEN-777 Software Quality Assurance
-**Team:** Leon, Tenzin, [third member]
+**Team:** Leon, Tenzin
 **Upstream project:** HTTPie CLI — https://github.com/httpie/cli
-**Fork:** [our fork URL]
+**Fork:** https://github.com/itsleeyawn/cli
 **Baseline analyzed:** v3.2.4
 
 ## Project Overview
