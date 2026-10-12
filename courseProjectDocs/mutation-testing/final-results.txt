@@ -1,0 +1,66 @@
+# Final mutmut results (after adding tests/test_mutation_utils.py and tests/test_mutation_argtypes.py)
+# Run on macOS, Python 3.13.7, mutmut 3.8
+
+total mutants: 350
+killed: 294
+survived: 13
+no tests: 43
+mutation score (killed / total): 84.0%
+mutation score (killed / tested): 95.8%
+
+    httpie.utils.xǁJsonDictPreservingDuplicateKeysǁ_ensure_items_used__mutmut_1: survived
+    httpie.utils.xǁJsonDictPreservingDuplicateKeysǁ_ensure_items_used__mutmut_2: survived
+    httpie.utils.xǁJsonDictPreservingDuplicateKeysǁ_ensure_items_used__mutmut_3: survived
+    httpie.utils.xǁJsonDictPreservingDuplicateKeysǁ_ensure_items_used__mutmut_4: survived
+    httpie.utils.xǁJsonDictPreservingDuplicateKeysǁ_ensure_items_used__mutmut_5: survived
+    httpie.utils.x_get_content_type__mutmut_2: survived
+    httpie.utils.x_get_content_type__mutmut_4: survived
+    httpie.utils.x_get_content_type__mutmut_5: survived
+    httpie.utils.x_parse_content_type_header__mutmut_9: survived
+    httpie.utils.x_as_site__mutmut_1: no tests
+    httpie.utils.x_as_site__mutmut_2: no tests
+    httpie.utils.x_as_site__mutmut_3: no tests
+    httpie.utils.x_as_site__mutmut_4: no tests
+    httpie.utils.x_as_site__mutmut_5: no tests
+    httpie.utils.x_as_site__mutmut_6: no tests
+    httpie.utils.x_as_site__mutmut_7: no tests
+    httpie.utils.x_as_site__mutmut_8: no tests
+    httpie.utils.x_as_site__mutmut_9: no tests
+    httpie.utils.x_as_site__mutmut_10: no tests
+    httpie.utils.x_as_site__mutmut_11: no tests
+    httpie.utils.x_get_site_paths__mutmut_1: no tests
+    httpie.utils.x_get_site_paths__mutmut_2: no tests
+    httpie.utils.x_get_site_paths__mutmut_3: no tests
+    httpie.utils.x_get_site_paths__mutmut_4: no tests
+    httpie.utils.x_get_site_paths__mutmut_5: no tests
+    httpie.utils.x_get_site_paths__mutmut_6: no tests
+    httpie.utils.x_get_site_paths__mutmut_7: no tests
+    httpie.utils.x_get_site_paths__mutmut_8: no tests
+    httpie.utils.x_get_site_paths__mutmut_9: no tests
+    httpie.utils.x_get_site_paths__mutmut_10: no tests
+    httpie.utils.x_get_site_paths__mutmut_11: no tests
+    httpie.utils.x_get_site_paths__mutmut_12: no tests
+    httpie.utils.x_get_site_paths__mutmut_13: no tests
+    httpie.cli.argtypes.xǁKeyValueArgǁ__repr____mutmut_1: no tests
+    httpie.cli.argtypes.xǁEscapedǁ__repr____mutmut_1: no tests
+    httpie.cli.argtypes.xǁEscapedǁ__repr____mutmut_2: no tests
+    httpie.cli.argtypes.xǁKeyValueArgTypeǁ__call____mutmut_5: survived
+    httpie.cli.argtypes.xǁKeyValueArgTypeǁ__call____mutmut_7: survived
+    httpie.cli.argtypes.xǁPromptMixinǁ_getpass__mutmut_1: no tests
+    httpie.cli.argtypes.xǁPromptMixinǁ_getpass__mutmut_2: no tests
+    httpie.cli.argtypes.xǁSSLCredentialsǁ__init____mutmut_1: no tests
+    httpie.cli.argtypes.xǁSSLCredentialsǁprompt_password__mutmut_1: no tests
+    httpie.cli.argtypes.xǁSSLCredentialsǁprompt_password__mutmut_2: no tests
+    httpie.cli.argtypes.xǁAuthCredentialsǁhas_password__mutmut_1: no tests
+    httpie.cli.argtypes.xǁAuthCredentialsǁprompt_password__mutmut_1: no tests
+    httpie.cli.argtypes.xǁAuthCredentialsǁprompt_password__mutmut_2: no tests
+    httpie.cli.argtypes.xǁAuthCredentialsArgTypeǁ__call____mutmut_1: no tests
+    httpie.cli.argtypes.xǁAuthCredentialsArgTypeǁ__call____mutmut_2: no tests
+    httpie.cli.argtypes.xǁAuthCredentialsArgTypeǁ__call____mutmut_3: no tests
+    httpie.cli.argtypes.xǁAuthCredentialsArgTypeǁ__call____mutmut_4: no tests
+    httpie.cli.argtypes.xǁAuthCredentialsArgTypeǁ__call____mutmut_5: no tests
+    httpie.cli.argtypes.xǁAuthCredentialsArgTypeǁ__call____mutmut_6: no tests
+    httpie.cli.argtypes.xǁAuthCredentialsArgTypeǁ__call____mutmut_7: no tests
+    httpie.cli.argtypes.xǁAuthCredentialsArgTypeǁ__call____mutmut_8: no tests
+    httpie.cli.argtypes.x_readable_file_arg__mutmut_4: survived
+    httpie.cli.argtypes.x_response_charset_type__mutmut_2: survived
