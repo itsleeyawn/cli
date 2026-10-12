@@ -59,3 +59,28 @@ That is 27 statements in these 6 files that were red before. The project wide ga
 - Most of what is still red is UI (`man_pages.py` and `rich_utils.py` are both at 0%) and platform specific code. Plain unit tests won't get those, they need the terminal and OS mocked out, which is what Week 6 is for.
 - The error path tests felt like the most useful ones. `load_text_file` and `read_raw_config` had zero coverage on every `except` branch, so if someone broke the error message the user sees, nothing would have caught it.
 - Doctests in `utils.py` run as part of the suite but don't register with `--cov`, which is why `humanize_bytes` showed up as untested even though it has examples in the docstring.
+
+## Leon's tests
+
+Added to the same file, `tests/test_unit_coverage_extension.py`, as sections 8 to 13 (6 test functions, 23 cases with parametrization). Picked modules Tenzin's tests did not touch.
+
+| # | Target (uncovered lines in baseline) | Test | Why |
+|---|---|---|---|
+| 8 | `downloads.filename_from_url` (118) and `trim_filename` (140) | `test_filename_from_url_extension_handling`, `test_trim_filename_keeps_extension_when_it_can` | The `.htm` to `.html` fix and the trim branch where the cut is longer than the name itself were never hit. Also checks the `index` fallback for an empty URL path and unknown content types. |
+| 9 | `uploads.is_stdin` (93) | `test_is_stdin_*` | The `except` branch for file objects without `fileno()` (like `BytesIO`) was uncovered. The fd match is tested with a fake since pytest swaps out `sys.stdin`. |
+| 10 | `utils.parse_content_type_header` (partial branches 211, 214) | `test_parse_content_type_header` | Quoted values, trailing empty params, mixed case keys and params with no `=` were not all covered. |
+| 11 | `output/writer.write_stream_with_colors_win` (89 to 97) | `test_write_stream_with_colors_win_*` | Windows only code path that was 0% covered on every OS. It is plain Python so it can be tested with a fake outfile: chunks with ANSI escapes go to `.write()` as str, everything else to `.buffer` as bytes. |
+| 12 | `cli/argtypes.PromptMixin` (138 to 145) and `KeyValueArg` / `Escaped` reprs (25, 45) | `test_prompt_password_*`, `test_argtypes_reprs` | Ctrl-C or EOF during a password prompt should write a newline to stderr and `sys.exit(0)` cleanly. That path was never tested. |
+| 13 | `models.HTTPMessage` (31, 35, 40, 45) | `test_http_message_base_methods_are_abstract` | The base class `NotImplementedError` stubs were uncovered. |
+
+Results: 23 run, 23 passed, 0 failed.
+
+Full suite with all Unit Testing I tests (Windows, Python 3.11.15): 1,079 tests, 1,052 passed, 4 failed, 19 skipped, 4 xfail. Statements 3,842 / 4,187 (91.8%), branches 934 / 1,126 (82.9%). The 4 failures are the 2 Big5 tests from baseline plus 2 of Tenzin's tests (`test_session_name_validator_accepts_names_and_paths[./path/to/session.json]` and `test_load_text_file_missing_file_raises_parse_error`) that only fail on Windows because of backslash paths.
+
+Per file after adding these:
+
+| File | Before | After |
+|---|---|---|
+| `httpie/cli/argtypes.py` | 95.6% | 99.4% |
+| `httpie/models.py` | 96.5% | 100% |
+| `httpie/output/writer.py` | 82.9% | 92.5% |
