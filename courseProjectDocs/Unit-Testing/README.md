@@ -29,3 +29,14 @@ python -m pytest --cov=httpie --cov-branch \
 ```
 
 Open `testResults/report.html` and `testCoverage/index.html`. Compare against `courseProjectDocs/Setup/testCoverage/index.html` for the baseline.
+
+
+## Week 6: mocking tests
+
+Two more files, same venv as above:
+
+```bash
+python -m pytest tests/test_mocking_update_warnings.py tests/test_mocking_daemons.py -v
+```
+
+No network or subprocesses, everything external is mocked with `unittest.mock` and `monkeypatch`. See `mocking.md` for what gets mocked and why. Rerun the full coverage command above to refresh `testCoverage/` and `testResults/`.
