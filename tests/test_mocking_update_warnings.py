@@ -74,7 +74,7 @@ def test_fetch_updates_calls_package_index_and_writes_file(env):
     with mock.patch.object(update_warnings.requests, 'get', return_value=fake_response(payload)) as get:
         _fetch_updates(env)
 
-    get.assert_called_once_with(PACKAGE_INDEX_LINK, verify=False)
+    get.assert_called_once_with(PACKAGE_INDEX_LINK, timeout=update_warnings.FETCH_TIMEOUT)
     saved = json.loads(env.config.version_info_file.read_text())
     assert saved['last_released_versions'] == payload
     assert saved['last_warned_date'] is None

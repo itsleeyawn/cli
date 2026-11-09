@@ -1,0 +1,395 @@
+Working... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+Run started:2026-11-09 04:12:27.145255+00:00
+
+Test results:
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/cli/argparser.py:416:12
+415	            # Invoked as `http URL'.
+416	            assert not self.args.request_items
+417	            if self.has_input_data:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/cli/dicts.py:65:8
+64	        """
+65	        assert not isinstance(value, list)
+66	        if key not in self:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/cli/nested_json/interpret.py:115:8
+114	    else:
+115	        assert isinstance(context, dict)
+116	        return context
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/cli/nested_json/interpret.py:127:12
+126	        if isinstance(value, NestedJSONArray):
+127	            assert key == EMPTY_STRING
+128	            return value
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/cli/nested_json/parse.py:48:8
+47	        nonlocal cursor
+48	        assert kinds
+49	        if can_advance():
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/cli/utils.py:53:8
+52	
+53	        assert self._obj is not None
+54	        return self._obj
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/context.py:99:8
+98	        """
+99	        assert all(hasattr(type(self), attr) for attr in kwargs.keys())
+100	        self.__dict__.update(**kwargs)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/downloads.py:217:8
+216	        """
+217	        assert not self.status.time_started
+218	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/downloads.py:263:8
+262	    def finish(self):
+263	        assert not self.finished
+264	        self.finished = True
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/downloads.py:319:8
+318	    def started(self, output_file, resumed_from=0, total_size=None):
+319	        assert self.time_started is None
+320	        self.total_size = total_size
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/downloads.py:350:8
+349	    def chunk_downloaded(self, size):
+350	        assert self.time_finished is None
+351	        self.downloaded += size
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/downloads.py:369:8
+368	    def finished(self):
+369	        assert self.time_started is not None
+370	        assert self.time_finished is None
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/downloads.py:370:8
+369	        assert self.time_started is not None
+370	        assert self.time_finished is None
+371	        self.time_finished = monotonic()
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/internal/daemon_runner.py:44:4
+43	
+44	    assert options.daemon
+45	    assert options.task_id in DAEMONIZED_TASKS
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/internal/daemon_runner.py:45:4
+44	    assert options.daemon
+45	    assert options.task_id in DAEMONIZED_TASKS
+46	    with redirect_stdout(env.devnull), redirect_stderr(env.devnull):
+
+--------------------------------------------------
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: httpie/internal/daemons.py:14:0
+13	from contextlib import suppress
+14	from subprocess import Popen, DEVNULL
+15	from typing import Dict, List
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: httpie/internal/daemons.py:29:11
+28	        prefix += [main_entrypoint]
+29	    return Popen(prefix + cmd, close_fds=True, shell=False, stdout=DEVNULL, stderr=DEVNULL, **kwargs)
+30	
+
+--------------------------------------------------
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: httpie/internal/daemons.py:33:4
+32	def _spawn_windows(cmd: List[str], process_context: ProcessContext) -> None:
+33	    from subprocess import (
+34	        CREATE_NEW_PROCESS_GROUP,
+35	        CREATE_NO_WINDOW,
+36	        STARTF_USESHOWWINDOW,
+37	        STARTUPINFO,
+38	    )
+39	
+
+--------------------------------------------------
+>> Issue: [B501:request_with_no_cert_validation] Call to requests with verify=False disabling SSL certificate checks, security issue.
+   Severity: High   Confidence: High
+   CWE: CWE-295 (https://cwe.mitre.org/data/definitions/295.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b501_request_with_no_cert_validation.html
+   Location: httpie/internal/update_warnings.py:44:15
+43	
+44	    response = requests.get(PACKAGE_INDEX_LINK, verify=False)
+45	    response.raise_for_status()
+
+--------------------------------------------------
+>> Issue: [B113:request_without_timeout] Call to requests without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b113_request_without_timeout.html
+   Location: httpie/internal/update_warnings.py:44:15
+43	
+44	    response = requests.get(PACKAGE_INDEX_LINK, verify=False)
+45	    response.raise_for_status()
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/manager/cli.py:100:4
+99	
+100	    assert isinstance(base, dict)
+101	    subcommands = ', '.join(map(repr, base.keys()))
+
+--------------------------------------------------
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: httpie/manager/compat.py:3:0
+2	import shutil
+3	import subprocess
+4	
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: httpie/manager/compat.py:30:21
+29	        with suppress(subprocess.CalledProcessError):
+30	            stdout = subprocess.check_output([pip_location, "--version"], text=True)
+31	            return "python 3" in stdout
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: httpie/manager/compat.py:52:18
+51	            check=True,
+52	            shell=False,
+53	            stdout=subprocess.PIPE,
+54	            stderr=subprocess.PIPE
+55	        )
+56	    except subprocess.CalledProcessError as error:
+57	        raise PipError(error.stdout, error.stderr) from error
+58	    else:
+59	        return process.stdout
+
+--------------------------------------------------
+>> Issue: [B408:blacklist] Using Document to parse untrusted XML data is known to be vulnerable to XML attacks. Replace Document with the equivalent defusedxml package, or make sure defusedxml.defuse_stdlib() is called.
+   Severity: Low   Confidence: High
+   CWE: CWE-20 (https://cwe.mitre.org/data/definitions/20.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b408-import-xml-minidom
+   Location: httpie/output/formatters/xml.py:7:4
+6	if TYPE_CHECKING:
+7	    from xml.dom.minidom import Document
+8	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/output/streams.py:45:8
+44	        """
+45	        assert output_options.any()
+46	        self.msg = msg
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/output/streams.py:212:24
+211	                        self.mime, body = converter.convert(body)
+212	                        assert isinstance(body, str)
+213	                        yield self.process_body(body)
+
+--------------------------------------------------
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: httpie/output/ui/man_pages.py:3:0
+2	
+3	import subprocess
+4	import os
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: httpie/output/ui/man_pages.py:26:18
+25	            [MAN_COMMAND, MAN_PAGE_SECTION, program],
+26	            shell=False,
+27	            stdout=subprocess.DEVNULL,
+28	            stderr=subprocess.DEVNULL
+29	        )
+30	    except Exception:
+31	        # There might be some errors outside the process, e.g
+32	        # a permission error to execute something that is not an
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: httpie/output/ui/man_pages.py:44:4
+43	    """
+44	    subprocess.run(
+45	        [MAN_COMMAND, MAN_PAGE_SECTION, program],
+46	        stdout=env.stdout,
+47	        stderr=env.stderr
+48	    )
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/output/ui/palette.py:97:12
+96	        if style is Styles.PIE:
+97	            assert style_name is not None
+98	            shade = PIE_STYLE_TO_SHADE[PieStyle(style_name)]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/output/ui/rich_progress.py:109:8
+108	
+109	        assert total is not None
+110	        self.console.print(f'[progress.description]{description}')
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'None'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: httpie/sessions.py:144:12
+143	            'username': None,
+144	            'password': None
+145	        }
+146	
+147	        # Runtime state of the Session objects.
+148	        self.env = env
+149	        self._headers = HTTPHeadersDict()
+
+--------------------------------------------------
+>> Issue: [B105:hardcoded_password_string] Possible hardcoded password: 'None'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b105_hardcoded_password_string.html
+   Location: httpie/sessions.py:280:41
+279	
+280	        credentials = {'username': None, 'password': None}
+281	        try:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: httpie/sessions.py:303:8
+302	    def auth(self, auth: dict):
+303	        assert {'type', 'raw_auth'} == auth.keys()
+304	        self['auth'] = auth
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 7548
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 33
+		Medium: 1
+		High: 1
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 1
+		Medium: 2
+		High: 32
+Files skipped (0):

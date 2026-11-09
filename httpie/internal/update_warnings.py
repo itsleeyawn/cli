@@ -16,6 +16,8 @@ from httpie.utils import is_version_greater, open_with_lockfile
 PACKAGE_INDEX_LINK = 'https://packages.httpie.io/latest.json'
 
 FETCH_INTERVAL = timedelta(weeks=2)
+# Seconds to wait for packages.httpie.io before giving up (connect, read).
+FETCH_TIMEOUT = 10
 WARN_INTERVAL = timedelta(weeks=1)
 
 UPDATE_MESSAGE_FORMAT = """\
@@ -31,7 +33,7 @@ You are already up-to-date.
 def _read_data_error_free(file: Path) -> Any:
     # If the file is broken / non-existent, ignore it.
     try:
-        with open(file) as stream:
+        with open(file, encoding='utf-8') as stream:
             return json.load(stream)
     except (ValueError, OSError):
         return {}
@@ -41,7 +43,7 @@ def _fetch_updates(env: Environment) -> str:
     file = env.config.version_info_file
     data = _read_data_error_free(file)
 
-    response = requests.get(PACKAGE_INDEX_LINK, verify=False)
+    response = requests.get(PACKAGE_INDEX_LINK, timeout=FETCH_TIMEOUT)
     response.raise_for_status()
 
     data.setdefault('last_warned_date', None)
