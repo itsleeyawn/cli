@@ -233,6 +233,8 @@ class PluginInstaller:
                 status = self.uninstall(args.targets)
             elif action == 'list':
                 status = self.list()
+            else:
+                raise ValueError(f'unknown plugins action: {action!r}')
 
         return status or ExitStatus.SUCCESS
 

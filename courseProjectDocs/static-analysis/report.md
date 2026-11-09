@@ -29,7 +29,7 @@ Full output, before and after our fixes, is in [`results/`](results/):
 | Tool | Before | After |
 |---|---|---|
 | bandit | 35 issues: **1 High**, **1 Medium**, 33 Low | 33 issues: 0 High, 0 Medium, 33 Low |
-| pylint | 611 messages, score 8.44/10 | 609 messages, score 8.45/10 |
+| pylint | 611 messages, score 8.44/10 | 608 messages, score 8.46/10 |
 | flake8 | 0 (with project config) | 0 |
 
 flake8 is clean because HTTPie already runs it in CI (`make codestyle`). The interesting findings came from bandit and pylint, which the project does not run.
@@ -77,6 +77,7 @@ The ones we looked at closely:
 | Tenzin | TLS verification disabled | bandit B501 (High) | `httpie/internal/update_warnings.py` | removed `verify=False` |
 | Tenzin | HTTP request with no timeout | bandit B113 (Medium) | `httpie/internal/update_warnings.py` | added `timeout=FETCH_TIMEOUT` (10 s) |
 | Tenzin | file opened with locale encoding | pylint W1514 | `httpie/internal/update_warnings.py` | `open(file, encoding='utf-8')` |
+| Leon | status possibly unbound | pylint E0606 | `httpie/manager/tasks/plugins.py` | added an `else` branch that raises `ValueError` |
 
 ### Tenzin: insecure update check (`update_warnings.py`)
 
@@ -108,9 +109,48 @@ Why it matters:
 
 Our Week 6 mocking test asserted the old insecure call (`assert_called_once_with(PACKAGE_INDEX_LINK, verify=False)`). It now asserts the timeout instead, so the test pins the secure behavior.
 
+### Leon: unbound variable in `plugins.py`
+
+`PluginInstaller.run` sets `status` in an `if/elif` chain with one branch for each known action. The chain had no `else`, and the method returns `status` after the chain.
+
+Before:
+
+```python
+with enable_plugins(self.dir):
+    if action == 'install':
+        status = self.install(args.targets)
+    elif action == 'upgrade':
+        status = self.upgrade(args.targets)
+    elif action == 'uninstall':
+        status = self.uninstall(args.targets)
+    elif action == 'list':
+        status = self.list()
+
+return status or ExitStatus.SUCCESS
+```
+
+After:
+
+```python
+    elif action == 'list':
+        status = self.list()
+    else:
+        raise ValueError(f'unknown plugins action: {action!r}')
+
+return status or ExitStatus.SUCCESS
+```
+
+Why it matters:
+
+- An action that is not one of the four gave `UnboundLocalError: cannot access local variable 'status'`. That error points at the `return` line, not at the real cause, which is the bad action name.
+- argparse limits the choices on the command line today. But `run()` is a public method, and a new subcommand or a direct call can send it a different value. The `else` makes the method safe without help from its callers.
+- The new error names the bad action, so the traceback shows the cause.
+
+We tried `parser.error(...)` first, because the method uses it for a missing subcommand. pylint still reported E0606, because it cannot see that `parser.error()` never returns. A wrong action at this point is a programming error, not a user error, so a `ValueError` is the correct signal. pylint accepts it.
+
 ### Verification
 
-New file `tests/test_static_analysis_fixes.py`. Run against the old code, 2 of them fail (the other 2 are the timeout-propagation and UTF-8 read tests, which guard behavior rather than reproduce a bug). Against the fixed code all 4 pass.
+New file `tests/test_static_analysis_fixes.py`. Run against the old code, 3 of them fail (the other 2 are the timeout-propagation and UTF-8 read tests, which guard behavior rather than reproduce a bug). Against the fixed code all 5 pass.
 
 | Test | Before fix | After fix |
 |---|---|---|
@@ -118,15 +158,16 @@ New file `tests/test_static_analysis_fixes.py`. Run against the old code, 2 of t
 | `test_fetch_updates_sets_a_timeout` | fail | pass |
 | `test_fetch_updates_propagates_timeout_instead_of_hanging` | pass | pass |
 | `test_read_data_error_free_reads_utf8` | pass | pass |
+| `test_plugins_run_rejects_unknown_action` | fail (`UnboundLocalError`) | pass |
 
 ```bash
 pytest tests/test_static_analysis_fixes.py tests/test_mocking_update_warnings.py \
-       tests/test_update_warnings.py
+       tests/test_update_warnings.py tests/test_plugins_cli.py
 ```
 
 Full suite (`pytest -n 4 tests httpie`): 1147 passed, 24 skipped, 4 xfailed, 3 failed. The 3 failures (`test_config_file_inaccessible` and two `big5` charset-detection cases in `test_encoding.py`) fail the same way on the code before our changes, so they are environment-related and not caused by these fixes.
 
-Re-running the tools after the fixes: bandit has no High or Medium issues left, the targeted pylint W1514 in `update_warnings.py` is gone (611 to 609 messages so far), and flake8 is still clean on `httpie/` and on the new test file.
+Re-running the tools after the fixes: bandit has no High or Medium issues left, the targeted pylint W1514 in `update_warnings.py` and E0606 in `plugins.py` are gone (611 to 608 messages, score 8.44 to 8.46), and flake8 is still clean on `httpie/` and on the new test file.
 
 ### Not fixed, on purpose
 
@@ -137,10 +178,10 @@ Re-running the tools after the fixes: bandit has no High or Medium issues left, 
 
 | | Tenzin | Leon |
 |---|---|---|
-| Ran bandit, pylint, flake8 and saved before/after output | yes | |
+| Ran bandit, pylint, flake8 and saved before/after output | yes | re-ran pylint after the E0606 fix |
 | Triage of bandit findings (real vs false positive) | yes | |
 | Triage of pylint findings | | yes |
-| Fix | `update_warnings.py`: B501, B113, W1514 | |
-| Regression tests in `tests/test_static_analysis_fixes.py` | update_warnings tests (4) | |
+| Fix | `update_warnings.py`: B501, B113, W1514 | `plugins.py`: E0606 |
+| Regression tests in `tests/test_static_analysis_fixes.py` | update_warnings tests (4) | plugins unknown-action test (1) |
 | Updated Week 6 mock test that asserted `verify=False` | yes | |
 | This report | both | both |

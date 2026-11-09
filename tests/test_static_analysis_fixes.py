@@ -60,3 +60,14 @@ def test_read_data_error_free_reads_utf8(tmp_path):
 
 
 # Leon: add regression tests for your fix below.
+
+
+# Leon: pylint E0606 (status possibly unbound) in manager/tasks/plugins.py
+
+def test_plugins_run_rejects_unknown_action(env):
+    from httpie.manager.tasks.plugins import PluginInstaller
+
+    installer = PluginInstaller(env)
+    # Before the fix this raised UnboundLocalError for 'status'.
+    with pytest.raises(ValueError, match='unknown plugins action'):
+        installer.run('bogus', None)

@@ -651,8 +651,7 @@ httpie/manager/tasks/plugins.py:197:8: C0415: Import outside toplevel (httpie.pl
 httpie/manager/tasks/plugins.py:217:4: C0116: Missing function or method docstring (missing-function-docstring)
 httpie/manager/tasks/plugins.py:222:8: C0415: Import outside toplevel (httpie.plugins.manager.enable_plugins) (import-outside-toplevel)
 httpie/manager/tasks/plugins.py:235:16: E1111: Assigning result of a function call, but 'list' returns None (assignment-from-no-return)
-httpie/manager/tasks/plugins.py:237:15: E0606: Possibly using variable 'status' before assignment (possibly-used-before-assignment)
-httpie/manager/tasks/plugins.py:240:0: C0116: Missing function or method docstring (missing-function-docstring)
+httpie/manager/tasks/plugins.py:242:0: C0116: Missing function or method docstring (missing-function-docstring)
 ************* Module httpie.manager.tasks.sessions
 httpie/manager/tasks/sessions.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 httpie/manager/tasks/sessions.py:17:0: C0116: Missing function or method docstring (missing-function-docstring)
@@ -670,11 +669,11 @@ httpie/manager/tasks/check_updates.py:1:0: C0114: Missing module docstring (miss
 httpie/manager/tasks/check_updates.py:7:0: C0116: Missing function or method docstring (missing-function-docstring)
 httpie/manager/tasks/check_updates.py:7:40: W0613: Unused argument 'args' (unused-argument)
 httpie/manager/tasks/check_updates.py:1:0: R0401: Cyclic import (httpie.cli.argtypes -> httpie.sessions) (cyclic-import)
-httpie/manager/tasks/check_updates.py:1:0: R0401: Cyclic import (httpie.__main__ -> httpie.core -> httpie.internal.daemon_runner -> httpie.internal.update_warnings -> httpie.internal.daemons) (cyclic-import)
-httpie/manager/tasks/check_updates.py:1:0: R0401: Cyclic import (httpie.cli.argparser -> httpie.output.ui.rich_help -> httpie.cli.options) (cyclic-import)
 httpie/manager/tasks/check_updates.py:1:0: R0401: Cyclic import (httpie.core -> httpie.internal.daemon_runner -> httpie.internal.update_warnings -> httpie.internal.daemons) (cyclic-import)
-httpie/manager/tasks/check_updates.py:1:0: R0401: Cyclic import (httpie.__main__ -> httpie.core -> httpie.internal.update_warnings -> httpie.internal.daemons) (cyclic-import)
+httpie/manager/tasks/check_updates.py:1:0: R0401: Cyclic import (httpie.cli.argparser -> httpie.output.ui.rich_help -> httpie.cli.options) (cyclic-import)
+httpie/manager/tasks/check_updates.py:1:0: R0401: Cyclic import (httpie.__main__ -> httpie.core -> httpie.internal.daemon_runner -> httpie.internal.update_warnings -> httpie.internal.daemons) (cyclic-import)
+httpie/manager/tasks/check_updates.py:1:0: R0401: Cyclic import (httpie.core -> httpie.internal.update_warnings -> httpie.internal.daemons) (cyclic-import)
 
 ------------------------------------------------------------------
-Your code has been rated at 8.45/10 (previous run: 8.44/10, +0.01)
+Your code has been rated at 8.46/10 (previous run: 8.45/10, +0.01)
 
