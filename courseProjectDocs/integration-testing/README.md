@@ -1,7 +1,7 @@
 # Integration Testing: Reproduce
 
 - **Tenzin:** `http --download` (`core`, `cli/argparser`, `client`, `downloads`, `output/streams`, filesystem), test file `tests/test_integration_downloads.py`
-- **Leon:**
+- **Leon:** `http --session` (`cli/argparser`, `client`, `sessions`, `config`), test file `tests/test_integration_sessions.py`
 
 ## Setup
 
@@ -24,10 +24,10 @@ pip install -e ".[test]"
 From the repo root:
 
 ```bash
-python -m pytest tests/test_integration_downloads.py -v
+python -m pytest tests/test_integration_downloads.py tests/test_integration_sessions.py -v
 ```
 
-Expected result: `7 passed, 1 xfailed`. The xfail is the defect described in `report.md` (resuming an already complete download exits with status 4). It is marked `xfail` so the suite stays green while the bug is open; if it is ever fixed the test will start passing and pytest will report `XPASS(strict)` as a failure, because the marker uses `strict=True`. That is the signal to remove the marker.
+Expected result: `9 passed, 1 xfailed`. The xfail is the defect described in `report.md` (resuming an already complete download exits with status 4). It is marked `xfail` so the suite stays green while the bug is open; if it is ever fixed the test will start passing and pytest will report `XPASS(strict)` as a failure, because the marker uses `strict=True`. That is the signal to remove the marker.
 
 ## Run the whole suite
 

@@ -27,6 +27,22 @@ Tests:
 7. 404 gives exit status 4 and creates no file (failure)
 8. `--continue` on a file that is already complete (edge, fails: see BUG-1)
 
+### Leon: `http --session`
+
+A session file stores headers, auth and cookies on disk, and the next request reads them back. One flow touches four modules.
+
+Modules integrated:
+
+- `cli/argparser.py`: reads `--session`, `--auth` and the request items
+- `client.py`: merges the session into the request
+- `sessions.py`: loads, updates and saves the session
+- `config.py`: reads and writes the JSON file
+
+Tests:
+
+1. A header, Basic auth and a server cookie from the first request are sent again on the second request (normal)
+2. A corrupt session file gives a clear error, exit status 1, and the file is not overwritten (failure)
+
 ## Test data preparation
 
 - Local httpbin server from `pytest-httpbin`, so no internet is needed.
@@ -34,14 +50,16 @@ Tests:
 - Expected bytes are fetched with Python's `urllib`, not HTTPie, so the expected result doesn't depend on the code being tested.
 - Resume tests start from a partial file (the first 700 bytes, or 300 junk bytes).
 - Each test runs in its own temp folder.
+- Session tests: the cookie comes from httpbin `/cookies/set`, and `/headers` echoes what HTTPie sent. The corrupt file is the hand-written string `{not json`.
 
 ## Execution and results
 
-Command: `python -m pytest tests/test_integration_downloads.py -v`
+Command: `python -m pytest tests/test_integration_downloads.py tests/test_integration_sessions.py -v`
 
-- Tests 1 to 7: pass
-- Test 8: xfail (known defect, BUG-1)
-- Total: **7 passed, 1 xfailed**. The full suite has no new failures.
+- Download tests 1 to 7: pass
+- Download test 8: xfail (known defect, BUG-1)
+- Session tests 1 and 2: pass, no defects found
+- Total: **9 passed, 1 xfailed**. The full suite has no new failures.
 
 Observations:
 
@@ -69,4 +87,5 @@ Observations:
 
 **Leon**
 
--
+- `http --session` integration tests (2 tests) in `tests/test_integration_sessions.py`
+- Session sections of the README and report
